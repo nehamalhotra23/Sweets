@@ -46,9 +46,9 @@ namespace Sweets.Controllers
       {
         flavours.Add(flavourTreat.Flavour);
       }
-      ViewBag.Treats = flavours;
+      ViewBag.Flavours = flavours;
      Treat thistreat = _db.Treats
-          .FirstOrDefault(a => a.TreatId == id);
+          .FirstOrDefault(t => t.TreatId == id);
       return View(thistreat);
     }
 

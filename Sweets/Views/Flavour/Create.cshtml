@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Sweets.Models.Flavour
+
+<h4>Add a new Flavour</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.FlavourName)
+    @Html.TextBoxFor(model => model.FlavourName)
+    <hr />
+    <label for="Treat1">Treat 1: </label>
+    <input id='Treat1' name='Treat1' type='text'>
+    <br>
+     <label for="Treat2">Treat 2: </label>
+    <input id='Treat2' name='Treat2' type='text'>
+    <br>
+     <label for="Treat3">Treat 3: </label>
+    <input id='Treat3' name='Treat3' type='text'>
+    <br>
+    <label for="Treat4">Treat 4: </label>
+    <input id='Treat4' name='Treat4' type='text'>
+    <br>
+   
+<input type="submit" value="Add new flavour" class="btn btn-primary" />
+}
+<p>@Html.ActionLink("Show all flavour", "Index")</p>  

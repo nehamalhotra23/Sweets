@@ -80,5 +80,24 @@ namespace Sweets.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+         public ActionResult Details(int id)
+        {
+            List<FlavourTreat> flavourTreats = new List<FlavourTreat>();
+            flavourTreats = _db.FlavourTreat
+                .Include(flavourTreat => flavourTreat.Treat)
+                .Where(flavourTreat => flavourTreat.FlavourId == id)
+                .ToList();
+            List<Treat> treats = new List<Treat>();
+
+            foreach (FlavourTreat flavourTreat in flavourTreats)
+            {
+                treats.Add(flavourTreat.Treat);
+            }
+            ViewBag.Treats = treats;
+            Flavour thisFlavour = _db.Flavours
+                .Include(f => f.Treats)
+                .FirstOrDefault(f => f.FlavourId == id);
+            return View(thisFlavour);
+        }
     }
 }

@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+  List<Treat> Treats = ViewBag.Treats as List <Treat>;
+}
+
+@model Sweets.Models.Flavour
+
+<h2>Flavour Details</h2>
+
+<h3>@Html.DisplayNameFor(model => model.FlavourName): @Html.DisplayFor(model => model.FlavourName)</h3>
+
+@foreach( Treat treat in Treats)
+{
+  <p>@treat.TreatName</p>
+}
