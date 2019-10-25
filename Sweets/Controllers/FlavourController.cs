@@ -99,5 +99,24 @@ namespace Sweets.Controllers
                 .FirstOrDefault(f => f.FlavourId == id);
             return View(thisFlavour);
         }
+        public ActionResult Edit(int id)
+        {
+            var thisFlavour = _db.Flavours.FirstOrDefault(f => f.FlavourId == id);
+            ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "TreatName");
+            return View(thisFlavour);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Flavour flavour, int TreatId)
+        {
+            if (TreatId != 0)
+            {
+                _db.FlavourTreat.Add(new FlavourTreat() { TreatId = TreatId, FlavourId = flavour.FlavourId });
+            }
+            _db.Entry(flavour).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        
     }
 }
