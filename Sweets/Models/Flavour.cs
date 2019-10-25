@@ -15,7 +15,7 @@ namespace Sweets.Models
         public virtual ApplicationUser User { get; set; }
 
     
-        public ICollection<FlavourTreat> Treats { get;}
+        public virtual ICollection<FlavourTreat> Treats { get;}
         
 
     }
