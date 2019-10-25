@@ -80,6 +80,7 @@ namespace Sweets.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+        [Authorize]
          public ActionResult Details(int id)
         {
             List<FlavourTreat> flavourTreats = new List<FlavourTreat>();

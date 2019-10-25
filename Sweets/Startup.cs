@@ -32,6 +32,7 @@ namespace Sweets
       services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<SweetsContext>()
         .AddDefaultTokenProviders();
+        
 
       services.Configure<IdentityOptions>(options =>
       {
@@ -42,6 +43,7 @@ namespace Sweets
         options.Password.RequireUppercase = false;
         options.Password.RequiredUniqueChars = 0;
       });
+
     }
 
     public void Configure(IApplicationBuilder app)

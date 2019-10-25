@@ -9,10 +9,10 @@
 @using (Html.BeginForm())
 {
     @Html.LabelFor(model => model.FlavourName)
-    @Html.TextBoxFor(model => model.FlavourName)
+    @Html.TextBoxFor(model => model.FlavourName, new { @class="form-control", required="required"})
     <hr/>
     <label for="Treat1">Treat 1: </label>
-    <input id='Treat1' name='Treat1' type='text'>
+    <input id='Treat1' name='Treat1' type='text' required>
     <br>
      <label for="Treat2">Treat 2: </label>
     <input id='Treat2' name='Treat2' type='text'>
@@ -25,5 +25,5 @@
     <br>
    
 <input type="submit" value="Add new flavour" class="btn btn-primary" />
-}
-<p>@Html.ActionLink("Show all flavour", "Index")</p>  
+}<hr>
+<button>@Html.ActionLink("Show all flavour", "Index")</button> 

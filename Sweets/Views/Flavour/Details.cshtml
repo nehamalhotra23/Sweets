@@ -9,13 +9,14 @@
 <hr/>
 <h3>@Html.DisplayNameFor(model => model.FlavourName): @Html.DisplayFor(model => model.FlavourName)</h3>
 
-
+ 
   <h4>Treats in this flavour are</h4>
   <ul>
   @foreach(Treat treat  in Treats)
   {
-    <li>@treat.TreatName</li>
+   <li>@treat.TreatName</li>
   }
   </ul>
+  <p>@Html.ActionLink("Back to Flavours", "Index")</p>
   <p>@Html.ActionLink("Edit Flavour", "Edit", new { id = Model.FlavourId })</p>
   <p>@Html.ActionLink("Delete Flavour", "Delete", new { id = Model.FlavourId })</p>

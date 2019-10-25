@@ -66,7 +66,8 @@ namespace Sweets.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-    public ActionResult Details(int id)
+        
+      public ActionResult Details(int id)
     {
       List<FlavourTreat> flavourTreats = new List<FlavourTreat>();
       flavourTreats = _db.FlavourTreat
