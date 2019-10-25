@@ -1,4 +1,4 @@
-#  Hair Salon
+#  Sweets and Treats
 
 #### _Sweets and Treats, 25-10-2019_
 
@@ -6,7 +6,7 @@
 
 ## Description
 
-_This MVC application of a bakery with user authentication. where user can add Treats and flavours_
+_This is a MVC application of a bakery. where an authenticated user can add, update and delete flavours and can add Treats. Whereas anonymous user can just read available Flavours and Treats  _
 
 ## Setup/Installation Requirements
 
