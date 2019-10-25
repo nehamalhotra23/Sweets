@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Sweets.Models;
+@model IEnumerable<Sweets.Models.Flavour>
+
+<h1> Flavour for @User.Identity.Name</h1>
+
+@if (Model.Any())
+{
+  <ul>
+    @foreach (Flavour flavour in Model)
+    {
+      <li>@Html.ActionLink($"{flavour.FlavourName}", "Details", new { id = flavour.FlavourId })</li>
+    }
+  </ul>
+} 
+else
+{
+  <h3>No flsvour have been added yet!</h3>
+}
+
+<p>@Html.ActionLink("Add new Flavour", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
