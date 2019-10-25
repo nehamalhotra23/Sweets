@@ -1,80 +1,64 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 using Sweets.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
-using System.Security.Claims;
-
 
 namespace Sweets.Controllers
 {
-    [Authorize]
-    public class TreatController : Controller
+  public class TreatController : Controller
+  {
+    private readonly SweetsContext _db;
+
+    public TreatController(SweetsContext db)
     {
-        private readonly SweetsContext _db;
-        private readonly UserManager<ApplicationUser> _userManager; 
+      _db = db;
+    }
 
+    public ActionResult Index()
+    {
+      List<Treat> model = _db.Treats.ToList();
+      return View(model);
+    }
 
-        public TreatController(UserManager<ApplicationUser> userManager, SweetsContext db)
-        {
-            _userManager = userManager;
-            _db = db;
-        }
-
-        public async Task<ActionResult> Index()
-        {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var currentUser = await _userManager.FindByIdAsync(userId);
-            var userFlavours = _db.Flavours.Where(entry => entry.User.Id == currentUser.Id);
-            return View(userFlavours);
-        }
-
-        public ActionResult Create()
+    public ActionResult Create()
+    {
+      return View();
+    }
+    
+   [HttpPost]
+        public ActionResult Create(Treat treat, string Flavour1, string Flavour2, string Flavour3, string Flavour4)
         {
            
-            return View();
-        }
-    [HttpPost]
-   [HttpPost]
-        public async Task<ActionResult> Create(Flavour flavour, string Treat1, string Treat2, string Treat3, string Treat4)
-        {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var currentUser = await _userManager.FindByIdAsync(userId);
-            flavour.User = currentUser;
-            _db.Flavours.Add(flavour);
+            _db.Treats.Add(treat);
             _db.SaveChanges();
             
-            List<string> treats = new List<string>();
-            treats.Add(Treat1);
-            treats.Add(Treat2);
-            treats.Add(Treat3);
-            treats.Add(Treat4);
+            List<string> flavours = new List<string>();
+            flavours.Add(Flavour1);
+            flavours.Add(Flavour2);
+            flavours.Add(Flavour3);
+            flavours.Add(Flavour4);
            
-            foreach(string treat in treats)
+            foreach(string flavour in flavours)
             {
-                if (treat != null)
+                if (flavour != null)
                 {
-                   Treat treatObject;
-                    int treatId;
-                    if(_db.Treats.Contains(new Treat() { TreatName = treat}))
+                   Flavour flavourObject;
+                    int flavourId;
+                    if(_db.Flavours.Contains(new Flavour() { FlavourName = flavour}))
                     {
-                        treatObject = _db.Treats.FirstOrDefault(Treat => Treat.TreatName == treat);
-                        treatId = treatObject.TreatId;
+                        flavourObject = _db.Flavours.FirstOrDefault(Flavour => Flavour.FlavourName == flavour);
+                        flavourId = flavourObject.FlavourId;
                     } 
                     else 
                     {
-                        var newTreat = new Treat();
-                        _db.Treats.Add(new Treat() { TreatName = treat}); // add treat to database
+                        var newflavour = new Flavour();
+                        _db.Flavours.Add(new Flavour() { FlavourName = flavour}); // add treat to database
                         _db.SaveChanges();
-                        treatObject = _db.Treats.FirstOrDefault(Treat => Treat.TreatName == treat);
-                        treatId = treatObject.TreatId;
+                        flavourObject = _db.Flavours.FirstOrDefault(Flavour => Flavour.FlavourName == flavour);
+                        flavourId = flavourObject.FlavourId;
                     }
-                    _db.FlavourTreat.Add(new FlavourTreat() {TreatId = treatId, FlavourId = flavour.FlavourId});                    
+                    _db.FlavourTreat.Add(new FlavourTreat() {FlavourId = flavourId, TreatId = treat.TreatId});                    
                 }
             }
             
@@ -97,6 +81,7 @@ namespace Sweets.Controllers
       }
       ViewBag.Flavours = flavours;
      Treat thistreat = _db.Treats
+     .Include(t => t.Flavours)
           .FirstOrDefault(t => t.TreatId == id);
       return View(thistreat);
     }
