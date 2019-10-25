@@ -117,6 +117,19 @@ namespace Sweets.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+        public ActionResult Delete(int id)
+        {
+            var thisFlavour = _db.Flavours.FirstOrDefault(t => t.FlavourId == id);
+            return View(thisFlavour);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var thisFlavour = _db.Flavours.FirstOrDefault(t => t.FlavourId == id);
+            _db.Flavours.Remove(thisFlavour);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
