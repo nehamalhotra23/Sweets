@@ -57,4 +57,11 @@ body {
 }
 h1 {
   font-family: 'Fredoka One', cursive;
+  font-size: 70px;
+}
+img {
+  float: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

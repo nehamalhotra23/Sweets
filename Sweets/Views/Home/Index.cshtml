@@ -1,11 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
 
-<h1>Sweets and Treats</h1>
+<h1>Welcome to Sweets and Treats</h1>
+<img src="https://i.etsystatic.com/7640213/r/il/56d67b/802287822/il_570xN.802287822_tdkn.jpg" height=200px; width=200px>
+
 @if (User.Identity.IsAuthenticated)
 {
-    <p>Hello @User.Identity.Name!</p>
+    <strong><p>Hello @User.Identity.Name!</p></strong>
      @using (Html.BeginForm("LogOff", "Account"))
     {
         <input type="submit" class="btn btn-primary" value="Log out" />        
