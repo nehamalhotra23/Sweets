@@ -1,8 +1,10 @@
 @{
   Layout = "_Layout";
 }
+<link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
 
-<h2>Authentication with Identity</h2>
+<h1>Welcome to Sweets and Treats</h1>
+<img src="https://i.etsystatic.com/7640213/r/il/56d67b/802287822/il_570xN.802287822_tdkn.jpg" height=200px; width=200px>
 <hr />
 @if (User.Identity.IsAuthenticated)
 {
@@ -14,11 +16,10 @@
     }<hr>
     <p>@Html.ActionLink("Add new Flavour", "Create", "Flavour")</p><hr>
     <p>@Html.ActionLink("Add new Treat", "Create", "Treat")</p><hr>
-    <p>@Html.ActionLink("See all flavour", "Details", "Treat")</p><hr> 
 }
 else
 {
     <p>@Html.ActionLink("Register", "Register")</p>
     <p>@Html.ActionLink("Log in", "Login")</p>
-     <p>@Html.ActionLink("See all flavour", "Index", "Treat")</p>  
+     <p>@Html.ActionLink("See all Treats", "Index", "Treat")</p>
 }

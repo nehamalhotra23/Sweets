@@ -6,11 +6,9 @@
 @model Sweets.Models.Treat;
 
 <h2>Treats</h2>
-<hr/>
+<hr>
 <h3>@Html.DisplayNameFor(model => model.TreatName): @Html.DisplayFor(model => model.TreatName)</h3>
-
-
-  <h4>Flavours in this treat is</h4>
+<h4>Flavours in this treat are</h4>
   <ul>
   @foreach(Flavour flavour in Flavours)
   {
