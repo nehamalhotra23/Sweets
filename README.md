@@ -12,7 +12,8 @@ _This is a MVC application of a bakery. where an authenticated user can add, upd
 
 * _Git Clone https://github.com/nehamalhotra23/Sweets/tree/master/Sweets_
 * _Run "Dotnet Restore" in terminal_
-* _Add migration_
+* _Run database migration in project root directory "Donet ef migration add Initial" _
+* _Update databse with "Donet ef database update" _
 * _Run Dotnet watch run_
 * _Navigate to localhost:5000_
 
